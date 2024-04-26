@@ -4,6 +4,7 @@ import biz.bna.project.model.Appendix;
 import biz.bna.project.repository.AppendixRepository;
 import biz.bna.project.rowmapper.RowMapForObject;
 import biz.bna.project.utils.DatabaseUtils;
+import biz.bna.project.utils.WordUtils;
 import biz.bna.project.view.AppendixView;
 
 import javax.servlet.ServletConfig;
@@ -47,7 +48,7 @@ public class BrowserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
         try {
             response.setCharacterEncoding("UTF-8");
-            String search = request.getParameter("search");
+            String search = WordUtils.stem(request.getParameter("search"));
             List<AppendixView> result;
             if(search != null && !search.isEmpty()){
                 RowMapForObject<AppendixView> rowMap = new RowMapForObject<>(AppendixView.class);
