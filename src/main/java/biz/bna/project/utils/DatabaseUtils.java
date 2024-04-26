@@ -79,7 +79,8 @@ public class DatabaseUtils {
         return select(rowMapper, sql, Map.of(1, param0Value));
     }
 
-    private Connection getConnection() throws SQLException {
+    private Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         return DriverManager.getConnection(databaseUrl, dataBaseUsername, databaseUserPassword);
     }
 
